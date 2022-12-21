@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # My apps
     'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Development server serve uploaded image files
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR/'media'
+
+# Key use for cart in user sessions
+CART_SESSION_ID = 'cart'
