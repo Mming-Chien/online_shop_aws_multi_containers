@@ -145,3 +145,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 STRIPE_PUBLISHABLE_KEY='pk_test_51MmIlwJmBoS0qtuULXLTTN4a0RCD4nWWIVFZ8bzgQOdvZGn5UpJdNwWPJOjpISUuWbSafhZ3iMZltscvbA31pCP000K8y4Mqh8' # Publishable key
 STRIPE_SECRET_KEY='sk_test_51MmIlwJmBoS0qtuUUaPARUWZuSWXS1w15D3eNm5EyFlEQf9hvvFfWOLc5E6Dg5VPT3gS0k5pG5UaRUHZICugfoF500o0e7bwUN' # Secret key
 STRIPE_API_VERSION = '2022-11-15'
+
+# Stripe CLI webhook secret for testing
+STRIPE_WEBHOOK_SECRET= 'whsec_76ce5721a1ba070e8184f68f0707b1637d9a2cd6afa4d44b9258fe9237016f01'
+
