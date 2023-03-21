@@ -6,7 +6,9 @@ from orders.models import Order
 
 @csrf_exempt
 def stripe_webhook(request):
-	''' Webhook endpoint for recieve payment notifications to mark order as paid '''
+	''' Webhook endpoint for recieve payment notifications to mark order as paid 
+	remember to run stripe CLI: ./stripe listen --forward-to localhost:8000/payment/webhook/ 
+	make sure have / at the end'''
 	payload = request.body
 	sig_header = request.META['HTTP_STRIPE_SIGNATURE']
 	event = None
@@ -33,5 +35,7 @@ def stripe_webhook(request):
 				return HttpResponse(status=404)
 			# Mark order as paid
 			order.paid = True 
+			# store Stripe payment ID
+			order.stripe_id = session.payment_intent
 			order.save()
 	return HttpResponse(status=200)
