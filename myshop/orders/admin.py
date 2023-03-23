@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.urls import reverse
 from django.utils.safestring import mark_safe
 from django.http import HttpResponse
 from .models import Order, OrderItem
@@ -42,11 +43,15 @@ def export_to_csv(modeladmin, request, queryset):
 	return response
 export_to_csv.short_discription = 'Export to CSV'
 
+def order_detail(obj):
+	''' link to custom view'''
+	url = reverse('orders:admin_order_detail', args=[obj.id])
+	return mark_safe(f'<a href="{url}">View</a>')
 
 @admin.register(Order)
 class OderAdmin(admin.ModelAdmin):
 	list_display = ['id', 'first_name', 'last_name', 'email', 'addess', 
-			'postal_code', 'city', 'paid',order_payment, 'updated', 'created', ]
-	list_filter = ['paid', 'created', 'updated']
+			'postal_code', 'city', 'paid',order_payment, order_detail, 'updated', 'created', ]
+	list_filter = ['paid', 'created', 'updated',]
 	inlines = [OrderItemLine]
 	actions = [export_to_csv]
