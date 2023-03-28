@@ -149,3 +149,6 @@ STRIPE_API_VERSION = '2022-11-15'
 # Stripe CLI webhook secret for testing
 STRIPE_WEBHOOK_SECRET= 'whsec_76ce5721a1ba070e8184f68f0707b1637d9a2cd6afa4d44b9258fe9237016f01'
 
+# STATIC_ROOT setting 
+STATIC_ROOT = BASE_DIR/'static'
+
