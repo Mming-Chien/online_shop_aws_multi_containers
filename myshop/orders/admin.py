@@ -48,16 +48,10 @@ def order_detail(obj):
 	url = reverse('orders:admin_order_detail', args=[obj.id])
 	return mark_safe(f'<a href="{url}">View</a>')
 
-def order_pdf(obj):
-	''' link to genereate pdf '''
-	url = reverse('orders:admin_order_pdf', args=[obj.id])
-	return mark_safe(f'<a href="{url}">PDF</a>')
-order_pdf.short_description = 'Invoice'
-
 @admin.register(Order)
 class OderAdmin(admin.ModelAdmin):
 	list_display = ['id', 'first_name', 'last_name', 'email', 'addess', 
-			'postal_code', 'city', 'paid', order_pdf ,order_payment, order_detail, 'updated', 'created', ]
+			'postal_code', 'city', 'paid',order_payment, order_detail, 'updated', 'created', ]
 	list_filter = ['paid', 'created', 'updated',]
 	inlines = [OrderItemLine]
 	actions = [export_to_csv]
