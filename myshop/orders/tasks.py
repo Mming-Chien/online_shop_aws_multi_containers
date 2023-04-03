@@ -8,8 +8,9 @@ def order_created(order_id):
     """
     Task to send an e-mail notification when an order is
     successfully created.
-    celery -A myshop worker --concurrency=1000 -P eventlet
+    celery -A myshop worker --loglevel=INFO --concurrency=10 -P eventlet
     need to add the -P pool for the celery to work properly
+    remember to install pool eventlet through: pip install -U eventlet
     """
     order = Order.objects.get(id=order_id)
     subject = f'Order nr. {order.id}'

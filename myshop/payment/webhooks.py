@@ -8,7 +8,9 @@ from orders.models import Order
 def stripe_webhook(request):
 	''' Webhook endpoint for recieve payment notifications to mark order as paid 
 	remember to run stripe CLI: ./stripe listen --forward-to localhost:8000/payment/webhook/ 
-	make sure have / at the end'''
+	make sure have / at the end
+	need to download stripe.exe
+	'''
 	payload = request.body
 	sig_header = request.META['HTTP_STRIPE_SIGNATURE']
 	event = None
