@@ -1,13 +1,14 @@
 {% extends 'shop/base.html' %}
+{% load i18n %}
 {% load static %}
 
 {% block title %}
-	{% if category %}{{ category.name }}{% else %}Products{% endif %}
+	{% if category %}{{ category.name }}{% else %}{% trans "Product" %}{% endif %}
 {% endblock title %}
 
 {% block content %}
 	<div id='sidebar'>
-		<h3>Categories</h3>
+		<h3>{% trans "Category" %}</h3>
 		<ul>
 			<li {% if not category %}class='selected'{% endif %}>
 				<a href="{% url 'shop:product_list' %}">All</a>
@@ -21,7 +22,7 @@
 	</div>
 
 	<div id='main' class="product-list">
-		<h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+		<h1>{% if category %}{{ category.name }}{% else %}{% trans "Product" %}{% endif %}</h1>
 		{% for product in products %}
 			<div class="item">
 				<a href="{{ product.get_absolute_url }}">

@@ -1,18 +1,19 @@
 from django.db import models
 from django.conf import settings
-from decimal import Decimal
+from django.utils.translation import gettext_lazy as _
 from django.core.validators import MinValueValidator, MaxValueValidator
+from decimal import Decimal
 from coupons.models import Coupon
 from shop.models import Product 
 
 class Order(models.Model):
 	''' Model for information of customer who place an order '''
-	first_name = models.CharField(max_length=50)
-	last_name = models.CharField(max_length=50)
-	email = models.EmailField()
-	addess = models.CharField(max_length=250)
-	postal_code = models.CharField(max_length=25)
-	city = models.CharField(max_length=250)
+	first_name = models.CharField(_('first_name'), max_length=50)
+	last_name = models.CharField(_('last_name'), max_length=50)
+	email = models.EmailField(_('e-mail'), )
+	addess = models.CharField(_('addess'), max_length=250)
+	postal_code = models.CharField(_('postal_code'), max_length=25)
+	city = models.CharField(_('city'), max_length=250)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
 	paid = models.BooleanField(default=False)
