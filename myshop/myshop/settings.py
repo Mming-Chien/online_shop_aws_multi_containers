@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'payment.apps.PaymentConfig',
     'coupons.apps.CouponsConfig',
     'rosetta',
+    'parler',
 ]
 
 MIDDLEWARE = [
@@ -169,3 +170,17 @@ LANGUAGES = [
     ('en', _('English')),
     ('vi', _('Vietnamese')),
 ]
+
+# Django-parler settings
+PARLER_LANGUAGES = {
+    None:(
+        {'code':'en'},
+        {'code':'vi'},
+        ),
+    'default':{
+        'fallback':'en',
+        'hide_unstranslated':False,
+    }
+}
+
+
