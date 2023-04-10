@@ -31,7 +31,7 @@ urlpatterns = i18n_patterns(
     path('',include('shop.urls', namespace='shop')),
 )
 urlpatterns += [
-    path('payment/webhooks', webhooks.stripe_webhook, name='stripe-webhook'),
+    path('payment/webhook/', webhooks.stripe_webhook, name='stripe-webhook'),
 ]
 
 if settings.DEBUG:

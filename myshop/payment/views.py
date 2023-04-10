@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.conf import settings
 from decimal import Decimal
 from orders.models import Order
+from shop.recommender import Recommender
 import stripe
 
 # create stripe instance
@@ -43,6 +44,12 @@ def payment_process(request):
 						percent_off = order.discount,
 						duration = 'once')
 			session_data['discounts']=[{'coupon':stripe_coupon.id}]
+
+		# Mark products for recommender
+		bought_items = list(item for item in order.items.all())
+		bought_products = list(item.product for item in bought_items)
+		r = Recommender()
+		r.products_bought(bought_products)
 
 		# Create stripe checkout session
 		session = stripe.checkout.Session.create(**session_data)
