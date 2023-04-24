@@ -184,4 +184,6 @@ PARLER_LANGUAGES = {
     }
 }
 
-
+# Heroku setting.
+import django_heroku
+django_heroku.settings(locals())
