@@ -1,2 +1,2 @@
 web: gunicorn myshop.wsgi --log-file -
-worker: gunicorn run -m myshop.worker
+worker: lein run -m myshop.worker
