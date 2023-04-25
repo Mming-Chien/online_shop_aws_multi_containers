@@ -1,1 +1,1 @@
-web gunicorn myshop --log-file -
+web gunicorn myshop:myshop --log-file -
