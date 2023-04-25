@@ -184,6 +184,16 @@ PARLER_LANGUAGES = {
     }
 }
 
+
+# Setting to deploy on heroku
+from pathlib import Path 
+import os
+import django_heroku
+import dj_database_url
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'))
+
 # Heroku setting.
 import django_heroku
 django_heroku.settings(locals())
