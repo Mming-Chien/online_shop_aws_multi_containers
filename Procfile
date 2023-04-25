@@ -1,2 +1,2 @@
 web: gunicorn myshop.wsgi --log-file -
-worker: lein run -m myshop.worker
+worker: env QUEUE=* bundle exec rake resque:work
