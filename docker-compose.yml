@@ -1,0 +1,43 @@
+services:
+  db:
+    image: postgres:15.2
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  cache:
+    image: redis:7.0.11
+    restart: always
+    ports: 
+      - '6739:6739'
+    volumes:
+      - ./data/cache:/data
+    environment: 
+     ALLOW_EMPTY_PASSWORD: "yes"
+
+
+  web:
+    build: .
+    restart: always
+    volumes:
+      - .:/code
+    environment:
+      - DJANGO_SETTINGS_MODULE=myshop.settings.prod
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - db 
+      - cache
+  nginx:
+    image: nginx:1.23.1
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - .:/code
+    ports:
+      - "80:80"
+
