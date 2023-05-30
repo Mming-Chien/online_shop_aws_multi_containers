@@ -3,13 +3,13 @@ language: generic
 services:
   - docker
 
-after_success: 
+after_succes: 
   - docker build -t minhchien01/online-shop-app .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push minhchien01/online-shop-app
 
 deploy: 
-  provider: elastickbeanstock
+  provider: elasticbeanstalk
   region: ap-southeast-1
   app: my-online_shop
   env: My-onlineshop-env
