@@ -3,7 +3,7 @@ language: generic
 services:
   - docker
 
-after_succes: 
+after_success: 
   - docker build -t minhchien01/online-shop-app .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push minhchien01/online-shop-app
