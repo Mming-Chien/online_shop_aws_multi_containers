@@ -13,7 +13,7 @@ deploy:
   region: ap-southeast-1
   app: my-online_shop
   env: My-onlineshop-env
-  access_key_id: @AWS_ACCESS_KEY
+  access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   brucket_name: "my-onlineshop-bucket"
   brucket_path: "docker"
